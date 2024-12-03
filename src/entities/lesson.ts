@@ -1,5 +1,7 @@
 
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, ManyToOne, JoinTable } from 'typeorm';
+import { Student } from './student';
+import { Chapter } from './chapter';
 
 @Entity()
 export class Lesson {
@@ -10,8 +12,12 @@ export class Lesson {
   title: string;
 
   @Column()
-  bodt: string;
+  body: string;
 
-  @Column()
-  student_id: number;
+  @ManyToMany(() => Student, (student) => student.id)
+  @JoinTable()
+  students: Student[]
+
+  @ManyToOne(() => Chapter, (chapter) => chapter.lesons)
+  chapter: Chapter
 }

@@ -1,5 +1,6 @@
 
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Lesson } from './lesson';
 
 @Entity()
 export class Chapter {
@@ -9,6 +10,6 @@ export class Chapter {
   @Column()
   title: string;
 
-  @Column()
-  lesson_id: number;
+  @OneToMany(() => Lesson, (lesson) => lesson.chapter)
+  lesons: Lesson[]
 }

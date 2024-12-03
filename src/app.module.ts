@@ -14,7 +14,7 @@ import { Chapter } from "./entities/chapter";
     port: 3306,
     username: 'root',
     password: 'z10mz10m',
-    database: 'typeorm-sadna-shafran',
+    database: 'typeormSadnaShafran',
     entities: [Lesson, Student, Chapter],
     synchronize: true,
   }),],

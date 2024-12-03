@@ -1,17 +1,21 @@
 
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
+import { Lesson } from './lesson';
 
 @Entity()
 export class Student {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({name: "first_name"})
   firstName: string;
 
-  @Column()
+  @Column({name: "last_name"})
   lastName: string;
 
-//   @Column({ default: true })
-//   isActive: boolean;
+  @ManyToMany(() => Lesson, (lesson) => lesson.id)
+  lessons: Lesson[]
+
+  @Column({ default: true })
+  non_omnivores: boolean;
 }
